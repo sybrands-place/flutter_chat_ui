@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -126,7 +128,8 @@ class _InputState extends State<Input> {
             query.padding.left,
             0,
             query.padding.right,
-            (query.viewInsets.bottom + query.padding.bottom) / 1.5,
+            (query.viewInsets.bottom + query.padding.bottom) /
+                (Platform.isIOS ? 1.5 : 1.0),
           )
         : EdgeInsets.zero;
     final textPadding = InheritedChatTheme.of(context)
