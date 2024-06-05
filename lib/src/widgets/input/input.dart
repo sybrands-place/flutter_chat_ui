@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
@@ -124,6 +123,8 @@ class _InputState extends State<Input> {
         .theme
         .inputPadding
         .copyWith(left: 16, right: 16);
+    final bottomPadding =
+        MediaQueryData.fromView(View.of(context)).viewPadding.bottom;
     final safeAreaInsets = isMobile
         ? EdgeInsets.fromLTRB(
             query.padding.left,
@@ -131,7 +132,9 @@ class _InputState extends State<Input> {
             query.padding.right,
             max(
               0,
-              (query.viewInsets.bottom + query.padding.bottom) - 60,
+              (query.viewInsets.bottom + query.padding.bottom) -
+                  60 -
+                  bottomPadding,
             ),
           )
         : EdgeInsets.zero;
